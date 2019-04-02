@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-class Footer extends Component {
+class FooterApp extends Component {
   render() {
     return (
       <Fragment>
@@ -10,4 +10,4 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+export default FooterApp;

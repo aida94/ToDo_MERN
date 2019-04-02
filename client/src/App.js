@@ -3,16 +3,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import NavbarApp from './components/NavbarApp';
 import ContainerApp from './components/ContainerApp';
-import Footer from './components/Footer';
+import FooterApp from './components/FooterApp';
+import { Provider } from 'react-redux';
+import store from './store';
+import { loadUser } from './actions/authActions';
 
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  };
+  
   render() {
     return (
-      <div className="App">
+      <Provider store={store}>
         <NavbarApp/>
         <ContainerApp/>
-        <Footer/>
-      </div>
+        <FooterApp/>
+      </Provider>
     );
   }
 }

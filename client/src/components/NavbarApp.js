@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
   Collapse,
   Container,
@@ -11,6 +11,8 @@ import {
 import RegisterModal from './auth/RegisterModal';
 import Logout from './auth/Logout';
 import LoginModal from './auth/LoginModal';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class NavbarApp extends Component {
   constructor(props) {
@@ -18,16 +20,41 @@ class NavbarApp extends Component {
     this.state = {
       isOpen: false
     };
-    this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
+  static propTypes = {
+    auth: PropTypes.object.isRequired
+  };
+
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
 
   render() {
+
+    const { isAuthenticated } = this.props.auth;
+
+    const authLinks = (
+      <Fragment>
+        <NavItem>
+          <Logout/>
+        </NavItem>
+      </Fragment>
+    );
+
+    const guestLinks = (
+      <Fragment>
+        <NavItem>
+          <RegisterModal/>
+        </NavItem>
+        <NavItem>
+          <LoginModal/>
+        </NavItem>
+      </Fragment>
+    );
+
     return (
       <Navbar color="light" light expand="md">
         <Container>
@@ -37,16 +64,8 @@ class NavbarApp extends Component {
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink href="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <RegisterModal/>
-              </NavItem>
-              <NavItem>
-                <LoginModal/>
-              </NavItem>
-              <NavItem>
-                <Logout/>
-              </NavItem>
+              </NavItem> 
+              { isAuthenticated ? authLinks : guestLinks }             
             </Nav>
           </Collapse>
         </Container>
@@ -55,4 +74,8 @@ class NavbarApp extends Component {
   }
 }
 
-export default NavbarApp;
+const mapStateToProps = (state) => ({
+  auth: state.auth
+}); 
+
+export default connect(mapStateToProps, { })(NavbarApp);
