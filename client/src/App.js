@@ -21,7 +21,7 @@ class App extends Component {
         <FooterApp/>
       </Provider>
     );
-  }
-}
+  };
+};
 
 export default App;

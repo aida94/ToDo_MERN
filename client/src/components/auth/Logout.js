@@ -15,7 +15,7 @@ class Logout extends Component {
         Logout
       </NavLink>
     );
-  }
-}
+  };
+};
 
 export default connect(null, { logout })(Logout);

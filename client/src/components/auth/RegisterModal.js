@@ -120,8 +120,8 @@ class RegisterModal extends Component {
         </Modal>
       </Fragment>
     );
-  }
-}
+  };
+};
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,

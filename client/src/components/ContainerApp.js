@@ -33,13 +33,10 @@ class ContainerApp extends Component {
           </Jumbotron>
         }
 
-        
-
-
       </Container>
     );
-  }
-}
+  };
+};
 
 const mapStateToProps = (state) => ({
   auth: state.auth

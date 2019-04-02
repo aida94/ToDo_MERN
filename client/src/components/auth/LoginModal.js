@@ -116,8 +116,8 @@ class LoginModal extends Component {
 
       </Fragment>
     );
-  }
-}
+  };
+};
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,

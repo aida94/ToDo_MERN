@@ -20,7 +20,7 @@ class NavbarApp extends Component {
     this.state = {
       isOpen: false
     };
-  }
+  };
 
   static propTypes = {
     auth: PropTypes.object.isRequired
@@ -30,7 +30,7 @@ class NavbarApp extends Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
+  };
 
   render() {
 
@@ -71,8 +71,8 @@ class NavbarApp extends Component {
         </Container>
       </Navbar>
     );
-  }
-}
+  };
+};
 
 const mapStateToProps = (state) => ({
   auth: state.auth
