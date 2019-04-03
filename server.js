@@ -16,6 +16,7 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
 // Use Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/notes', require('./routes/api/notes'));
 
 const port = process.env.PORT || 5000;
 
