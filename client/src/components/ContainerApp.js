@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Jumbotron } from 'reactstrap';
 import LoginModal from './auth/LoginModal';
-import Items from './Items';
+import Notes from './Notes';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -19,7 +19,7 @@ class ContainerApp extends Component {
         { isAuthenticated && 
           <div className='my-5'>
             <h3 className='text-secondary'> Welcome, {user.username.toUpperCase()} </h3>
-            <Items/>
+            <Notes/>
           </div>
         }
 

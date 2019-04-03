@@ -20,8 +20,14 @@ router.get('/',auth, (req, res) => {
 // @access  Private
 
 router.post('/', auth, (req, res) => {
+    const { note } = req.body;
+
+    if(!note) {
+        return res.status(400).json({ msg: 'Please add note' });
+    }
+
     const newNote = new Note ({
-        note: req.body.note,
+        note,
         user_id: req.user.id
     });
 
