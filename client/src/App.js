@@ -3,7 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import NavbarApp from './components/NavbarApp';
 import ContainerApp from './components/ContainerApp';
+import Item from './components/Item';
+import NotFound from './components/NotFound'
 import FooterApp from './components/FooterApp';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/authActions';
@@ -16,12 +19,18 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <NavbarApp/>
-        <ContainerApp/>
-        <FooterApp/>
+        <Router>
+          <NavbarApp/>
+          <Switch>
+            <Route exact path='/' component={ContainerApp}/>
+            <Route path='/note' component={Item}/>
+            <Route component={NotFound}/>
+          </Switch>
+          <FooterApp/>
+        </Router>
       </Provider>
     );
-  };
-};
+  }
+}
 
 export default App;

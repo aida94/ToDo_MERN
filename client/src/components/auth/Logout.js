@@ -12,10 +12,10 @@ class Logout extends Component {
   render() {
     return (
       <NavLink onClick={this.props.logout} href='#logout'>
-        Logout
+        <strong>Logout</strong>
       </NavLink>
     );
-  };
-};
+  }
+}
 
 export default connect(null, { logout })(Logout);

@@ -1,0 +1,12 @@
+.custom-control-input:checked~.custom-control-label::before{color:#fff;border-color:#6c757d;background-color:#6c757d}
+.custom-control-input:focus~.custom-control-label::before{box-shadow:0 0 0 .2rem rgba(	108, 117, 125, .3)}
+.custom-control-input:focus:not(:checked)~.custom-control-label::before{border-color:#6c757d}
+
+.cardLink {
+    color: #856404;
+}
+.cardLink:hover {
+    color: #856404;
+    /* font-weight:bolder;
+    text-decoration: none */
+}

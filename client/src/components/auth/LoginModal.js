@@ -10,8 +10,7 @@ import {
   Label,
   Input,
   NavLink,
-  Alert
-} from 'reactstrap';
+  Alert } from 'reactstrap';
 import { connect } from 'react-redux';
 import { login} from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
@@ -85,7 +84,7 @@ class LoginModal extends Component {
     return (
       <Fragment>
         <NavLink onClick={this.toggle} href='#login'>
-          Login
+          <strong>Login</strong>
         </NavLink>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
@@ -96,28 +95,25 @@ class LoginModal extends Component {
             { this.state.msg ? <Alert color='danger'>{this.state.msg}</Alert>: '' }
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-
                 <Label for='email'>Email</Label>
                 <Input type='email' name='email' id='email' placeholder='Email' className='mb-3' onChange={this.onChange}/>
-
                 <Label for='password'>Password</Label>
                 <Input type='password' name='password' id='password' placeholder='Password' className='mb-3' onChange={this.onChange}/>
-
                 <Button color='primary' className='mt-4' block> Login </Button>
               </FormGroup>
             </Form>
           </ModalBody>
           <ModalFooter>
             <p className='d-flex justify-content-start'>
-              If you don't have an account, please <a href='#register'> Register </a>
+              If you don't have an account, please &nbsp; <a href='#register'> Register </a>
             </p>  
           </ModalFooter>
         </Modal>
 
       </Fragment>
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,

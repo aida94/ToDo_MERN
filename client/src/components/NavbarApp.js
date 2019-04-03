@@ -33,7 +33,6 @@ class NavbarApp extends Component {
   };
 
   render() {
-
     const { isAuthenticated } = this.props.auth;
 
     const authLinks = (
@@ -56,14 +55,14 @@ class NavbarApp extends Component {
     );
 
     return (
-      <Navbar color="light" light expand="md">
+      <Navbar color='light' light expand='md'>
         <Container>
-          <NavbarBrand href="/">ToDo APP</NavbarBrand>
+          <NavbarBrand href='/' className='text-secondary'><strong>ToDo APP</strong></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className='ml-auto' navbar>
               <NavItem>
-                <NavLink href="/">Home</NavLink>
+                <NavLink href='/'><strong>Home</strong></NavLink>
               </NavItem> 
               { isAuthenticated ? authLinks : guestLinks }             
             </Nav>
@@ -71,8 +70,8 @@ class NavbarApp extends Component {
         </Container>
       </Navbar>
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = (state) => ({
   auth: state.auth

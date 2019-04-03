@@ -10,12 +10,11 @@ import {
   Label,
   Input,
   NavLink,
-  Alert
-} from 'reactstrap';
+  Alert } from 'reactstrap';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { register } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+import PropTypes from 'prop-types';
 
 class RegisterModal extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ class RegisterModal extends Component {
       password: '',
       msg: null
     };
-  };
+  }
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
@@ -88,7 +87,7 @@ class RegisterModal extends Component {
     return (
       <Fragment>
         <NavLink onClick={this.toggle} href='#register'>
-          Register
+          <strong>Register</strong>
         </NavLink>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
@@ -101,27 +100,24 @@ class RegisterModal extends Component {
               <FormGroup>
                 <Label for='username'>Username</Label>
                 <Input type='text' name='username' id='username' placeholder='Username' className='mb-3' onChange={this.onChange}/>
-
                 <Label for='email'>Email</Label>
                 <Input type='email' name='email' id='email' placeholder='Email' className='mb-3' onChange={this.onChange}/>
-
                 <Label for='password'>Password</Label>
                 <Input type='password' name='password' id='password' placeholder='Password' className='mb-3' onChange={this.onChange}/>
-
                 <Button color='secondary' className='mt-4' block> Register </Button>
               </FormGroup>
             </Form>
           </ModalBody>
           <ModalFooter>
             <p className='d-flex justify-content-start'>
-              If you have an account, please <a href='#login'> Login </a>
+              If you have an account, please &nbsp; <a href='#login'> Login </a>
             </p>  
           </ModalFooter>
         </Modal>
       </Fragment>
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,

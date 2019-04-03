@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Jumbotron } from 'reactstrap';
 import LoginModal from './auth/LoginModal';
+import Items from './Items';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -16,9 +17,10 @@ class ContainerApp extends Component {
       <Container>
 
         { isAuthenticated && 
-          <Container className='mt-5'>
-            <h3> Welcome {user.username.toUpperCase()} </h3>
-          </Container>
+          <div className='my-5'>
+            <h3 className='text-secondary'> Welcome, {user.username.toUpperCase()} </h3>
+            <Items/>
+          </div>
         }
 
         {!isAuthenticated &&
@@ -35,8 +37,8 @@ class ContainerApp extends Component {
 
       </Container>
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = (state) => ({
   auth: state.auth
