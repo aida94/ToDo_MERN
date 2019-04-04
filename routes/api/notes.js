@@ -8,7 +8,7 @@ const Note = require('../../models/Note');
 // @route   Get api/notes
 // @desc    Get user notes
 // @access  Private
-router.get('/',auth, (req, res) => {
+router.get('/', auth, (req, res) => {
     Note.find()
         .where('user_id', req.user.id)
         .sort({ date: -1 })
@@ -18,7 +18,6 @@ router.get('/',auth, (req, res) => {
 // @route   Post api/notes
 // @desc    Add note
 // @access  Private
-
 router.post('/', auth, (req, res) => {
     const { note } = req.body;
 
@@ -32,7 +31,7 @@ router.post('/', auth, (req, res) => {
     });
 
     newNote.save()
-           .then(note => res.json(note));
+        .then(note => res.json(note));
 });
 
 // @route   Delete api/notes
@@ -47,6 +46,6 @@ router.delete('/:id', auth, (req, res) => {
         .catch(err => res.status(404)
                             .json({success: false})
         );
-})
+});
 
 module.exports = router;
