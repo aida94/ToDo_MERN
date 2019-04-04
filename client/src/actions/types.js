@@ -15,6 +15,13 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 // note types
 export const GET_NOTES = 'GET_NOTES';
 export const ADD_NOTE = 'ADD_NOTE';
-export const NOTES_ADDED = 'NOTES_ADDED';
+export const NOTE_ADDED = 'NOTE_ADDED';
 export const DELETE_NOTE = 'DELETE_NOTE';
 export const NOTES_LOADING = 'NOTES_LOADING';
+
+// item types
+export const GET_ITEMS = 'GET_ITEMS';
+export const ADD_ITEM = 'ADD_ITEM';
+export const ITEM_ADDED = 'ITEM_ADDED';
+export const DELETE_ITEM = 'DELETE_ITEM';
+export const ITEMS_LOADING = 'ITEMS_LOADING';

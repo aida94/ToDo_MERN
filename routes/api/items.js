@@ -5,20 +5,20 @@ const auth = require('../../middleware/auth');
 // Items Model
 const Item = require('../../models/Item');
 
-// @route   Get /api/items
+// @route   Get /note/api/items
 // @desc    Get items
 // @access  Private
-router.get('/:note_id', (req, res) => {
+router.get('/:note_id', auth, (req, res) => {
     Item.find()
         .where('note_id', req.params.note_id)
         .sort({ date: -1 })
         .then(items => res.json(items))
 });
 
-// @route   Post /api/items
+// @route   Post /note/api/items
 // @desc    Add item
 // @access  Private
-router.post('/:note_id', (req, res) => {
+router.post('/:note_id', auth, (req, res) => {
     const { item } = req.body;
 
     if(!item) {
@@ -34,7 +34,7 @@ router.post('/:note_id', (req, res) => {
         .then(item => res.json(item));
 });
 
-// @route   Post /api/items
+// @route   Post /note/api/items
 // @desc    Check item
 // @access  Private
 router.put('/:id', (req, res) => {
@@ -66,7 +66,7 @@ router.put('/:id', (req, res) => {
     // );
 });
 
-// @route   Delete /api/items
+// @route   Delete /note/api/items
 // @desc    Delete item
 // @access  Private
 router.delete('/:id', (req, res) => {

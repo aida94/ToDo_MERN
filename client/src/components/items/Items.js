@@ -1,78 +1,74 @@
 import React, { Component } from 'react';
-import { Button, Container, ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
+import { Button, Container, ListGroup, ListGroupItem, CustomInput } from 'reactstrap';
+import { connect } from 'react-redux';
+import { getItems } from '../../actions/itemActions';
+import { clearErrors } from '../../actions/errorActions';
+import PropTypes from 'prop-types';
+import ItemModel from './ItemsModal';
 
 class Item extends Component {  
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false,
-      item: '',
-    };
+
+  static propTypes = {
+    getItems: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    item: PropTypes.object.isRequired,
+    error: PropTypes.object.isRequired,
+
   };
 
-  toggle = () => {
-    this.setState({
-      modal: !this.state.modal
-    });
-  };
+  componentDidMount(){
+    // get note_id from url
+    const url = window.location.pathname.split('/');
+    const note_id = url.pop();
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onSubmit = e => {
-    e.preventDefault();
-
+    this.props.getItems(note_id);
   };
 
   render() {
+    const { isAuthenticated } = this.props.auth;
+    const { items } = this.props.item;
+    
     return (
       <Container className='my-5'>
 
-        <h3 className='text-secondary'> Notes Name </h3>
+        {isAuthenticated &&
+          <div>
+            <h3 className='text-secondary'> Notes Name </h3>
+            <ItemModel/>
+            
+            <Container>
+              <ListGroup className='mt-5'>  
+                {items.map(({_id, item}) => (
+                  <ListGroupItem key={_id}  className='w-75'>
+                    <CustomInput type='checkbox' id='item1' label=''>
+                      <span>{item}</span>
+                      <Button className='float-right' color='danger' size='sm' > 
+                        &times;
+                      </Button>
+                    </CustomInput>
+                  </ListGroupItem>
+                ))}                                   
+              </ListGroup>
+            </Container> 
+          </div>
+        }
 
-        <Button outline color='secondary' className='mt-4' onClick={this.toggle}>
-          Add Item ...
-        </Button>
-
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>
-            Add Item
-          </ModalHeader>
-          <ModalBody>
-            <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for='item'>Item Name</Label>
-                <Input type='text' name='item' id='item' placeholder='Item' className='mb-3' onChange={this.onChange}/>
-                <Button color='secondary' className='mt-4' block> Add </Button>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-        </Modal>
-        
-        <Container>
-          <ListGroup className='mt-5'>  
-            <ListGroupItem className='w-75'>
-              <CustomInput type='checkbox' id='item1' label=''>
-                <span>Item 1</span>
-                <Button className='float-right' color='danger' size='sm' > 
-                  &times;
-                </Button>
-              </CustomInput>
-            </ListGroupItem>  
-            <ListGroupItem className='w-75'>
-              <CustomInput type='checkbox' id='item2' label=''>
-                <span>Item 2</span>
-                <Button className='float-right' color='danger' size='sm' > 
-                  &times;
-                </Button>
-              </CustomInput>
-            </ListGroupItem>                                                   
-          </ListGroup>
-        </Container>        
+        {!isAuthenticated && 
+          <div>
+            <h4 className='text-center mt-5'>You are not authorized to access. <br/> Please login first</h4>
+          </div>
+        }
+ 
       </Container>
     );
   }
 }
 
-export default Item;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  item: state.item,
+  error: state.error
+});
+
+export default connect(mapStateToProps, { getItems, clearErrors })(Item);

@@ -57,7 +57,7 @@ class NotesModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const newNote= {
+    const newNote = {
       note: this.state.note
     }
 

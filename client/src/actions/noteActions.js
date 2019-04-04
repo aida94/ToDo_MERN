@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_NOTES, ADD_NOTE, NOTES_ADDED, DELETE_NOTE, NOTES_LOADING } from './types';
+import { GET_NOTES, ADD_NOTE, NOTE_ADDED, DELETE_NOTE, NOTES_LOADING } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
@@ -24,13 +24,12 @@ export const addNote = note => (dispatch, getState) => {
         payload: res.data
       }))
     .catch(err => dispatch(returnErrors(err.response.data, err.response.status, 'ADD_NOTE_FAIL'))); 
-
 };
 
 // Note added
 export const noteAdded = () => {
   return {
-      type: NOTES_ADDED
+    type: NOTE_ADDED
   };
 };
 
@@ -43,12 +42,11 @@ export const deleteNote = id => (dispatch, getState) => {
         payload: id
       }))
     .catch(err => dispatch(returnErrors(err.response.data, err.response.status, 'DELETE_NOTE_FAIL'))); 
-
 };
 
 // before Notes loaded
 export const setNotesLoading = () => {
-    return {
-        type: NOTES_LOADING
-    };
+  return {
+    type: NOTES_LOADING
+  };
 };

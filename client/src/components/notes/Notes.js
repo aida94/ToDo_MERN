@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Card, CardHeader, CardFooter, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { getNotes, deleteNote } from '../../actions/noteActions'
 import { clearErrors } from '../../actions/errorActions';
@@ -42,7 +43,9 @@ class Notes extends Component {
                   </ListGroup>
                 </CardBody>
                 <CardFooter className='list-group-item-warning'>
-                  <a className='cardLink' href={'/note/' + _id}>Show more</a> / <a className='cardLink' href='#remove' onClick={this.onDeleteClick.bind(this, _id)}>Remove Note</a>
+                  <Link to={'/note/' + _id} className='cardLink'>Show more</Link>
+                  /
+                  <a className='cardLink' href='#remove' onClick={this.onDeleteClick.bind(this, _id)}>Remove Note</a>
                 </CardFooter>
               </Card>
             </div>
