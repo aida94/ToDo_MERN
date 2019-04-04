@@ -1,8 +1,4 @@
-import { 
-  GET_NOTES, 
-  ADD_NOTE, 
-  DELETE_NOTE, 
-  Notes_LOADING } from '../actions/types';
+import { GET_NOTES, ADD_NOTE, NOTES_ADDED, DELETE_NOTE, NOTES_LOADING } from '../actions/types';
   
   const initialState = {
     notes: [],
@@ -16,7 +12,6 @@ import {
         return {
           ...state,
           notes: action.payload,
-          note_added: false,
           loading: false
         }; 
       case ADD_NOTE: 
@@ -25,12 +20,17 @@ import {
           notes: [action.payload, ...state.notes],
           note_added: true,
         };
+      case NOTES_ADDED: 
+        return {
+          ...state,
+          note_added: false,
+        };
       case DELETE_NOTE: 
         return {
           ...state,
           notes: state.notes.filter(note => note._id !== action.payload)
         };
-      case Notes_LOADING: 
+      case NOTES_LOADING: 
         return {
           ...state,
           loading: true

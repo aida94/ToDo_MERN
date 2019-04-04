@@ -1,16 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  NavLink,
-  Alert } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, NavLink, Alert } from 'reactstrap';
 import { connect } from 'react-redux';
 import { register } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
@@ -26,7 +15,7 @@ class RegisterModal extends Component {
       password: '',
       msg: null
     };
-  }
+  };
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,

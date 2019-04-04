@@ -15,5 +15,6 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 // note types
 export const GET_NOTES = 'GET_NOTES';
 export const ADD_NOTE = 'ADD_NOTE';
+export const NOTES_ADDED = 'NOTES_ADDED';
 export const DELETE_NOTE = 'DELETE_NOTE';
-export const Notes_LOADING = 'Notes_LOADING';
+export const NOTES_LOADING = 'NOTES_LOADING';

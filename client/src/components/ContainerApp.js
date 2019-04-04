@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Jumbotron } from 'reactstrap';
 import LoginModal from './auth/LoginModal';
-import Notes from './Notes';
+import Notes from './notes/Notes';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 

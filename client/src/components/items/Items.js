@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Button, 
-  Container,
-  ListGroup, 
-  ListGroupItem,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  CustomInput } from 'reactstrap';
+import { Button, Container, ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
 
 class Item extends Component {  
   constructor(props) {

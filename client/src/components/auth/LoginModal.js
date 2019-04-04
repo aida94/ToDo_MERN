@@ -1,16 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  NavLink,
-  Alert } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, NavLink, Alert } from 'reactstrap';
 import { connect } from 'react-redux';
 import { login} from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';

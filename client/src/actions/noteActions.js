@@ -1,10 +1,5 @@
 import axios from 'axios';
-import { 
-  GET_NOTES, 
-  ADD_NOTE, 
-  DELETE_NOTE, 
-  Notes_LOADING 
-} from './types';
+import { GET_NOTES, ADD_NOTE, NOTES_ADDED, DELETE_NOTE, NOTES_LOADING } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
@@ -32,6 +27,13 @@ export const addNote = note => (dispatch, getState) => {
 
 };
 
+// Note added
+export const noteAdded = () => {
+  return {
+      type: NOTES_ADDED
+  };
+};
+
 // Delete Note
 export const deleteNote = id => (dispatch, getState) => {
   axios.delete(`/api/notes/${id}`, tokenConfig(getState))
@@ -47,6 +49,6 @@ export const deleteNote = id => (dispatch, getState) => {
 // before Notes loaded
 export const setNotesLoading = () => {
     return {
-        type: Notes_LOADING
+        type: NOTES_LOADING
     };
 };

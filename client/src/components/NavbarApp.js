@@ -1,17 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import {
-  Collapse,
-  Container,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink } from 'reactstrap';
+import { Collapse, Container, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { connect } from 'react-redux';
 import RegisterModal from './auth/RegisterModal';
 import Logout from './auth/Logout';
 import LoginModal from './auth/LoginModal';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class NavbarApp extends Component {

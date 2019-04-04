@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import NavbarApp from './components/NavbarApp';
 import ContainerApp from './components/ContainerApp';
-import Item from './components/Item';
+import Item from './components/items/Items';
 import NotFound from './components/NotFound'
 import FooterApp from './components/FooterApp';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
