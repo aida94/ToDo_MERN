@@ -5,8 +5,8 @@ import noteReducer from './noteReducer';
 import itemReducer from './itemReducer';
 
 export default combineReducers({
-    error: errorReducer,
-    auth: authReducer,
-    note: noteReducer,
-    item: itemReducer,
+  error: errorReducer,
+  auth: authReducer,
+  note: noteReducer,
+  item: itemReducer,
 });

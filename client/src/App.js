@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import NavbarApp from './components/NavbarApp';
 import ContainerApp from './components/ContainerApp';
 import Item from './components/items/Items';
-import NotFound from './components/NotFound'
+import NotFound from './components/NotFound';
 import FooterApp from './components/FooterApp';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/authActions';
 
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
-  };
+  }
   
   render() {
     return (

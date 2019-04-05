@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb://localhost:27017/ToDo_MERN",
-    "jwtSecret": "myJwtSecret"
+  "mongoURI": "mongodb://localhost:27017/ToDo_MERN",
+  "jwtSecret": "myJwtSecret"
 }

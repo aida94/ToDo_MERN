@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, NavLink, Alert } from 'reactstrap';
 import { connect } from 'react-redux';
-import { login} from '../../actions/authActions';
-import { clearErrors } from '../../actions/errorActions';
 import PropTypes from 'prop-types';
+import { login } from '../../actions/authActions';
+import { clearErrors } from '../../actions/errorActions';
 
 class LoginModal extends Component {
   constructor(props) {
@@ -12,57 +12,57 @@ class LoginModal extends Component {
       modal: false,
       email: '',
       password: '',
-      msg: null
+      msg: null,
     };
-  };
+  }
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    clearErrors: PropTypes.func.isRequired,
   };
 
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
 
     // check if there is new error after update
-    if(error !== prevProps.error) {
+    if (error !== prevProps.error) {
       // Check for login error
-      if(error.id === 'LOGIN_FAIL') {
+      if (error.id === 'LOGIN_FAIL') {
         this.setState({ msg: error.msg.msg });
-      }else {
+      } else {
         this.setState({ msg: null });
-      };
-    };
+      }
+    }
 
     // if authenticated close modal
-    if(this.state.modal && isAuthenticated) {
+    if (this.state.modal && isAuthenticated) {
       this.toggle();
-    };
-  };
+    }
+  }
     
   toggle = () => {
     // clear errors
     this.props.clearErrors();
 
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
     });
   };
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
 
     // Create user object
     const user = {
       email,
-      password
+      password,
     };
 
     // attempt to login
@@ -81,7 +81,7 @@ class LoginModal extends Component {
             Login User
           </ModalHeader>
           <ModalBody>
-            { this.state.msg ? <Alert color='danger'>{this.state.msg}</Alert>: '' }
+            { this.state.msg ? <Alert color='danger'>{this.state.msg}</Alert> : '' }
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Label for='email'>Email</Label>
@@ -104,9 +104,9 @@ class LoginModal extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
 });
 
 export default connect(mapStateToProps, { login, clearErrors })(LoginModal);

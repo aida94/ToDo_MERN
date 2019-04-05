@@ -4,22 +4,22 @@ const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   isLoading: false,
-  user: null
+  user: null,
 };
 
-export default function(state = initialState, action){
-  switch(action.type) {
+export default function (state = initialState, action) {
+  switch (action.type) {
     case USER_LOADING: 
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case USER_LOADED: 
       return {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user: action.payload
+        user: action.payload,
       };
     case LOGIN_SUCCESS: 
     case REGISTER_SUCCESS: 
@@ -40,9 +40,9 @@ export default function(state = initialState, action){
         token: null,
         isAuthenticated: false,
         isLoading: false,
-        user: null
+        user: null,
       };   
     default:
       return state;
-  };
-};
+  }
+}

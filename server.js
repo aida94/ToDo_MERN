@@ -10,8 +10,8 @@ const db = config.get('mongoURI');
 
 // Mongo Connect
 mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
-    .then(() => console.log('MongoDB connected...'))
-    .catch(err => console.log(err));
+	.then(() => console.log('MongoDB connected...'))
+	.catch(err => console.log(err));
 
 // Use Routes
 app.use('/api/users', require('./routes/api/users'));

@@ -1,26 +1,26 @@
 import React, { Component, Fragment } from 'react';
 import { Collapse, Container, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import RegisterModal from './auth/RegisterModal';
 import Logout from './auth/Logout';
 import LoginModal from './auth/LoginModal';
-import PropTypes from 'prop-types';
 
 class NavbarApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
-  };
+  }
 
   static propTypes = {
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
   };
 
   toggle = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
     });
   };
 
@@ -65,8 +65,8 @@ class NavbarApp extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  auth: state.auth
+const mapStateToProps = state => ({
+  auth: state.auth,
 }); 
 
 export default connect(mapStateToProps, { })(NavbarApp);

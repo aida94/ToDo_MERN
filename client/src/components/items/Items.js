@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Button, Container, ListGroup, ListGroupItem, CustomInput } from 'reactstrap';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getItems } from '../../actions/itemActions';
 import { clearErrors } from '../../actions/errorActions';
-import PropTypes from 'prop-types';
 import ItemModel from './ItemsModal';
 
-class Item extends Component {  
-
+class Item extends Component {
   static propTypes = {
     getItems: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
@@ -17,13 +16,13 @@ class Item extends Component {
 
   };
 
-  componentDidMount(){
-    // get note_id from url
+  componentDidMount() {
+    // get noteId from url
     const url = window.location.pathname.split('/');
-    const note_id = url.pop();
+    const noteId = url.pop();
 
-    this.props.getItems(note_id);
-  };
+    this.props.getItems(noteId);
+  }
 
   render() {
     const { isAuthenticated } = this.props.auth;
@@ -32,15 +31,15 @@ class Item extends Component {
     return (
       <Container className='my-5'>
 
-        {isAuthenticated &&
-          <div>
+        {isAuthenticated
+          && <div>
             <h3 className='text-secondary'> Notes Name </h3>
             <ItemModel/>
             
             <Container>
               <ListGroup className='mt-5'>  
-                {items.map(({_id, item}) => (
-                  <ListGroupItem key={_id}  className='w-75'>
+                {items.map(({ _id, item }) => (
+                  <ListGroupItem key={_id} className='w-75'>
                     <CustomInput type='checkbox' id='item1' label=''>
                       <span>{item}</span>
                       <Button className='float-right' color='danger' size='sm' > 
@@ -54,8 +53,8 @@ class Item extends Component {
           </div>
         }
 
-        {!isAuthenticated && 
-          <div>
+        {!isAuthenticated 
+          && <div>
             <h4 className='text-center mt-5'>You are not authorized to access. <br/> Please login first</h4>
           </div>
         }
@@ -65,10 +64,10 @@ class Item extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   item: state.item,
-  error: state.error
+  error: state.error,
 });
 
 export default connect(mapStateToProps, { getItems, clearErrors })(Item);

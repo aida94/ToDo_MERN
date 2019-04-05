@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addItem, itemAdded } from '../../actions/itemActions';
 import { clearErrors } from '../../actions/errorActions';
-import PropTypes from 'prop-types';
 
 class ItemModel extends Component {  
   constructor(props) {
@@ -11,35 +11,35 @@ class ItemModel extends Component {
     this.state = {
       modal: false,
       item: '',
-      msg: null
+      msg: null,
     };
-  };
+  }
 
   static propTypes = {
     addItem: PropTypes.func.isRequired,
     itemAdded: PropTypes.func.isRequired,
     item_added: PropTypes.bool,
     error: PropTypes.object.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    clearErrors: PropTypes.func.isRequired,
   }
 
   componentDidUpdate(prevProps) {
     const { error } = this.props;
-    if(error !== prevProps.error) {
-        //Check for add error
-        if(error.id === 'ADD_ITEM_FAIL') {
-            this.setState({ msg: error.msg.msg });
-        }else {
-            this.setState({ msg: null });
-        }
-    };
+    if (error !== prevProps.error) {
+      // Check for add error
+      if (error.id === 'ADD_ITEM_FAIL') {
+        this.setState({ msg: error.msg.msg });
+      } else {
+        this.setState({ msg: null });
+      }
+    }
 
     // if authenticated close modal
-    if(this.state.modal && this.props.item_added) {
+    if (this.state.modal && this.props.item_added) {
       this.toggle();
       this.props.itemAdded();
-    };
-  };
+    }
+  }
 
   toggle = () => {
     // Clear errors
@@ -47,20 +47,20 @@ class ItemModel extends Component {
 
     this.setState({
       modal: !this.state.modal,
-      item: ''
+      item: '',
     });
   };
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const newItem = {
       item: this.state.item,
-      note: '5ca5fd1fad2fd125b41e2fff'
-    }
+      note: '5ca5fd1fad2fd125b41e2fff',
+    };
 
     // Add item via addItem action
     this.props.addItem(newItem);
@@ -78,7 +78,7 @@ class ItemModel extends Component {
             Add Item
           </ModalHeader>
           <ModalBody>
-            { this.state.msg ? <Alert color='danger'>{this.state.msg}</Alert>: '' }
+            { this.state.msg ? <Alert color='danger'>{this.state.msg}</Alert> : '' }
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Label for='item'>Item Name</Label>
@@ -93,10 +93,10 @@ class ItemModel extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   item_added: state.item.item_added,
-  error: state.error
+  error: state.error,
 });
   
 
-export default connect(mapStateToProps, { addItem, itemAdded,  clearErrors })(ItemModel);
+export default connect(mapStateToProps, { addItem, itemAdded, clearErrors })(ItemModel);

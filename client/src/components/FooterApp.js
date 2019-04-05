@@ -7,7 +7,7 @@ class FooterApp extends Component {
 
       </Fragment>
     );
-  };
-};
+  }
+}
 
 export default FooterApp;

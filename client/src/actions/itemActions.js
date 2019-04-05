@@ -4,34 +4,31 @@ import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
 // Get User Items  
-export const getItems = note_id => (dispatch, getState) => {
+export const getItems = noteId => (dispatch, getState) => {
   dispatch(setItemsLoading);
-  axios.get(`./api/items/${note_id}`, tokenConfig(getState))
-  .then(res =>
-    dispatch({
-        type: GET_ITEMS,
-        payload: res.data,
-        note_id: note_id
+  axios.get(`./api/items/${noteId}`, tokenConfig(getState))
+    .then(res => dispatch({
+      type: GET_ITEMS,
+      payload: res.data,
+      noteId,
     }))
-  .catch(err => dispatch(returnErrors(err.response.data, err.response.status, 'GET_NOTE_FAIL')));
-
+    .catch(err => dispatch(returnErrors(err.response.data, err.response.status, 'GET_NOTE_FAIL')));
 };
 
 // Add Item
 export const addItem = item => (dispatch, getState) => {
   axios.post(`./api/items/${item.note}`, item, tokenConfig(getState))
-    .then(res => 
-      dispatch({
-        type: ADD_ITEM,
-        payload: res.data
-      }))
-    .catch(err => dispatch(returnErrors(err.response.data, err.response.status, 'ADD_ITEM_FAIL')))
+    .then(res => dispatch({
+      type: ADD_ITEM,
+      payload: res.data,
+    }))
+    .catch(err => dispatch(returnErrors(err.response.data, err.response.status, 'ADD_ITEM_FAIL')));
 };
 
 // Item added
 export const itemAdded = () => {
   return {
-    type: ITEM_ADDED
+    type: ITEM_ADDED,
   };
 };
 
@@ -48,6 +45,6 @@ export const deleteItem = id => (dispatch) => {
 // before Items loaded
 export const setItemsLoading = () => {
   return {
-    type: ITEMS_LOADING
+    type: ITEMS_LOADING,
   };
 };
