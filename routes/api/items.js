@@ -5,76 +5,79 @@ const auth = require('../../middleware/auth');
 // Items Model
 const Item = require('../../models/Item');
 
-// @route   Get /note/api/items
+
+// @route   Get /api/items/:note_id
 // @desc    Get items
 // @access  Private
-router.get('/:note_id', auth, (req, res) => {
-    Item.find()
-        .where('note_id', req.params.note_id)
-        .sort({ date: -1 })
-        .then(items => res.json(items))
+router.get('/:note_id', auth, async (req, res) => {
+
+  try {
+    const item = await Item.find().where('note_id', req.params.note_id).sort({ date: -1 });
+    return res.json({ item });
+
+  } catch(error) {
+      throw(error);
+  }
+
 });
 
-// @route   Post /note/api/items
+
+// @route   Post /api/items/:note_id
 // @desc    Add item
 // @access  Private
-router.post('/:note_id', auth, (req, res) => {
-    const { item } = req.body;
+router.post('/:note_id', auth, async (req, res) => {
+  const { item } = req.body;
 
-    if(!item) {
-        return res.status(400).json({ msg: 'Please add item' });
-    }
+  // Validate input
+  if(!item) {
+    return res.status(400).json({ msg: 'Please add item' });
+  }
 
-    const newItem = new Item ({
-        item,
-        note_id: req.params.note_id
-    });
+  try {
+    const newItem = await Item.create({ item, note_id: req.params.note_id });
+    return res.json({ note: newItem });
 
-    newItem.save()
-        .then(item => res.json(item));
+  } catch(error) {
+      throw(error)
+  }
+
 });
 
-// @route   Post /note/api/items
+
+// @route   Post /api/items/:id
 // @desc    Check item
 // @access  Private
-router.put('/:id', (req, res) => {
-    const id = req.params.id;
+router.put('/:id', async (req, res) => {
+  const id = req.params.id;
 
-    Item.findById(id)
-        .then(item => {
-            let check = !item.is_checked;
-            console.log(check);
-            Item.updateOne({ is_checked: check })
-        });
+  try {
+    const item = await Item.findById(id);
+    if (!item) {
+      return res.json({ message: 'Item not found!' });
+    }
+    const updatedItem = await Item.findOneAndUpdate({ _id: id }, { is_checked: !item.is_checked }, { new: true });
+    return res.json({ updatedItem });
 
-    // Item.findByIdAndUpdate( 
-    //     // the id of the item to find
-    //     id,
+  } catch (error) {
+    throw error;
+  }
 
-    //     // the change to be made.
-    //     { $set: {"is_checked": false} },
-
-    //     // an option that asks mongoose to return the updated version of the document instead of the pre-updated one.
-    //     {new: true},
-        
-    //     // the callback function
-    //     (err, item) => {
-    //     // Handle any possible database errors
-    //         if (err) return res.status(500).send(err);
-    //         return res.send(item);
-    //     }
-    // );
 });
 
-// @route   Delete /note/api/items
+
+// @route   Delete /api/items/:id
 // @desc    Delete item
 // @access  Private
-router.delete('/:id', (req, res) => {
-    Item.findOneAndDelete({_id: req.params.id }, 
-    (error, result) => {
-      if (error) return res.status(404).send(error);
-      return res.status(200).send(result);
-    });
+router.delete('/:id', async (req, res) => {
+
+  try {
+    const item = await Item.findOneAndDelete({ _id: req.params.id });
+    return res.json({ item });
+
+  } catch(error) {
+      throw(error)
+  }
+
 });
 
 module.exports = router;

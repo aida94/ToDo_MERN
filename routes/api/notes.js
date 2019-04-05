@@ -5,6 +5,7 @@ const auth = require('../../middleware/auth');
 // Notes Model
 const Note = require('../../models/Note');
 
+
 // @route   Get api/notes
 // @desc    Get user notes
 // @access  Private
@@ -43,7 +44,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 
-// @route   Delete api/notes
+// @route   Delete api/notes/:id
 // @desc    Delete note
 // @access  Private
 router.delete('/:id', auth, async (req, res) => {
