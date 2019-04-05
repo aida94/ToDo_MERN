@@ -16,7 +16,7 @@ async function auth(req, res, next) {
     next();
 
   } catch(err) {
-    res.status(400).json({ msg: 'Token is not valid'});
+      res.status(400).json({ msg: 'Token is not valid'});
   }
 }
 

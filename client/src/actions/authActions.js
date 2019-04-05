@@ -19,6 +19,7 @@ export const loadUser = () => (dispatch, getState) => {
     });
 };
 
+
 // Register User
 export const register = ({ username, email, password }) => (dispatch) => {
   // Headers
@@ -30,7 +31,7 @@ export const register = ({ username, email, password }) => (dispatch) => {
 
   // Request body 
   const body = JSON.stringify({ username, email, password });
-  axios.post('http://localhost:5000/api/users', body, config)
+  axios.post('http://localhost:5000/api/auth/register', body, config)
     .then(res => dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
@@ -40,6 +41,7 @@ export const register = ({ username, email, password }) => (dispatch) => {
       dispatch({ type: REGISTER_FAIL });
     });
 };
+
 
 // Login User
 export const login = ({ email, password }) => (dispatch) => {
@@ -52,7 +54,7 @@ export const login = ({ email, password }) => (dispatch) => {
 
   // Request body 
   const body = JSON.stringify({ email, password });
-  axios.post('http://localhost:5000/api/auth', body, config)
+  axios.post('http://localhost:5000/api/auth/login', body, config)
     .then(res => dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -63,12 +65,14 @@ export const login = ({ email, password }) => (dispatch) => {
     });
 };
 
+
 // Logout User
 export const logout = () => {
   return {
     type: LOGOUT_SUCCESS,
   };
 };
+
 
 // Setup config/headers and token
 export const tokenConfig = (getState) => {
