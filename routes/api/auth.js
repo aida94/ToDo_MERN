@@ -40,6 +40,7 @@ router.post('/login', async (req, res) => {
 
 });
 
+
 // @route   Post api/auth/register
 // @desc    Register new user
 // @access  Public
@@ -74,6 +75,7 @@ router.post('/register', async (req, res) => {
       throw error;
   }
 });
+
 
 // @route   Get api/auth/user
 // @desc    Get user data

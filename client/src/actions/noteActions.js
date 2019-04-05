@@ -6,7 +6,7 @@ import { returnErrors } from './errorActions';
 // Get User Notes  
 export const getNotes = () => (dispatch, getState) => {
   dispatch(setNotesLoading);
-  axios.get('./api/notes', tokenConfig(getState))
+  axios.get('http://localhost:5000/api/notes', tokenConfig(getState))
     .then(res => dispatch({
       type: GET_NOTES,
       payload: res.data,
@@ -16,7 +16,7 @@ export const getNotes = () => (dispatch, getState) => {
 
 // Add Note
 export const addNote = note => (dispatch, getState) => {
-  axios.post('/api/notes', note, tokenConfig(getState))
+  axios.post('http://localhost:5000/api/notes', note, tokenConfig(getState))
     .then(res => dispatch({
       type: ADD_NOTE,
       payload: res.data,
@@ -33,7 +33,7 @@ export const noteAdded = () => {
 
 // Delete Note
 export const deleteNote = id => (dispatch, getState) => {
-  axios.delete(`/api/notes/${id}`, tokenConfig(getState))
+  axios.delete(`http://localhost:5000/api/notes/${id}`, tokenConfig(getState))
     .then(res => dispatch({
       type: DELETE_NOTE,
       payload: id,
