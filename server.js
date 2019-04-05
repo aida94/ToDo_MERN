@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
@@ -14,6 +15,7 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
 	.catch(err => console.log(err));
 
 // Use Routes
+app.use(cors());
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/notes', require('./routes/api/notes'));

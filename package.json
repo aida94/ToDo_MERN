@@ -1,6 +1,9 @@
 {
   "name": "todo_mern",
   "version": "1.0.0",
+  "engines": {
+    "node": "^v10.15.0"
+  },
   "description": "ToDo App built in MERN",
   "main": "server.js",
   "scripts": {
@@ -12,12 +15,14 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.0.1",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.4.20"
   },
   "devDependencies": {
     "eslint": "5.12.0",
-    "eslint-config-airbnb": "^17.1.0"
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-node": "^8.0.1"
   }
 }

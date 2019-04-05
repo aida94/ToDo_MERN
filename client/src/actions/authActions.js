@@ -6,7 +6,7 @@ import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOU
 export const loadUser = () => (dispatch, getState) => { 
   // User loading
   dispatch({ type: USER_LOADING });
-  axios.get('./api/auth/user', tokenConfig(getState))
+  axios.get('http://localhost:5000/api/auth/user', tokenConfig(getState))
     .then(res => dispatch({ 
       type: USER_LOADED,
       payload: res.data,
@@ -30,7 +30,7 @@ export const register = ({ username, email, password }) => (dispatch) => {
 
   // Request body 
   const body = JSON.stringify({ username, email, password });
-  axios.post('/api/users', body, config)
+  axios.post('http://localhost:5000/api/users', body, config)
     .then(res => dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
@@ -52,7 +52,7 @@ export const login = ({ email, password }) => (dispatch) => {
 
   // Request body 
   const body = JSON.stringify({ email, password });
-  axios.post('/api/auth', body, config)
+  axios.post('http://localhost:5000/api/auth', body, config)
     .then(res => dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
