@@ -30,9 +30,10 @@ class Notes extends Component {
       <Fragment>
         <NotesModal/>
 
-        { console.log(notes) }
-{/* 
-        <div className='row mt-4'>
+        { console.log(notes)}
+        
+
+        {/* <div className='row mt-4'>
           {notes.map(({ _id, note }) => (
             <div key={_id} className='col-3 mb-4'>
               <Card outline color='warning' className='m-2'>
