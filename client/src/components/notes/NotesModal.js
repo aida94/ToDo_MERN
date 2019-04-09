@@ -29,7 +29,7 @@ class NotesModal extends Component {
     if (error !== prevProps.error) {
       // Check for add error
       if (error.id === 'ADD_NOTE_FAIL') {
-        this.setState({ msg: error.msg.msg });
+        this.setState({ msg: error.msg });
       } else {
         this.setState({ msg: null });
       }
