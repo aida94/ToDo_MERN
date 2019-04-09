@@ -4,9 +4,12 @@
 
 .cardLink {
     color: #856404;
+    display: inline;
+    padding: .3rem .15rem;
 }
 .cardLink:hover {
-    color: #856404;
-    /* font-weight:bolder;
-    text-decoration: none */
+    color: #574309 !important;
+    /* font-weight:bolder;*/
+    text-decoration: underline !important; 
+    cursor:pointer;
 }

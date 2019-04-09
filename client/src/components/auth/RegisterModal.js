@@ -75,7 +75,7 @@ class RegisterModal extends Component {
   render() {
     return (
       <Fragment>
-        <NavLink onClick={this.toggle} href='#register'>
+        <NavLink onClick={this.toggle}>
           <strong>Register</strong>
         </NavLink>
 

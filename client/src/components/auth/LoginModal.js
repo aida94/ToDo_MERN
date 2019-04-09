@@ -72,7 +72,7 @@ class LoginModal extends Component {
   render() {
     return (
       <Fragment>
-        <NavLink onClick={this.toggle} href='#login'>
+        <NavLink onClick={this.toggle}>
           <strong>Login</strong>
         </NavLink>
 
