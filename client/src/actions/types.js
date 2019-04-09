@@ -18,6 +18,7 @@ export const ADD_NOTE = 'ADD_NOTE';
 export const NOTE_ADDED = 'NOTE_ADDED';
 export const DELETE_NOTE = 'DELETE_NOTE';
 export const NOTES_LOADING = 'NOTES_LOADING';
+export const EMPTY_NOTES = 'EMPTY_NOTES';
 
 // item types
 export const GET_ITEMS = 'GET_ITEMS';

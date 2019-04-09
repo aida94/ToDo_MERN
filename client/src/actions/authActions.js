@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { returnErrors } from './errorActions'; 
-import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL } from './types';
+import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL, EMPTY_NOTES } from './types';
 
 
 // Check token & load user
@@ -53,8 +53,9 @@ export const login = ({ email, password }) => async (dispatch) => {
 
 
 // Logout User
-export const logout = () => {
-  return { type: LOGOUT_SUCCESS };
+export const logout = () => async (dispatch) => {
+  dispatch({ type: LOGOUT_SUCCESS });
+  dispatch({ type: EMPTY_NOTES });
 };
 
 
