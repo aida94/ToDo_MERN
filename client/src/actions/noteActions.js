@@ -16,7 +16,7 @@ export const getNotes = () => async (dispatch, getState) => {
 
   try {
     const res = await axios.get('http://localhost:5000/api/notes', tokenConfig(getState));
-    dispatch({ type: GET_NOTES, payload: res.data });
+    dispatch({ type: GET_NOTES, payload: res.data.notes });
   } catch (err) {
     dispatch(returnErrors(err.response.data, err.response.status, 'GET_NOTES_FAIL'));
   }
@@ -27,7 +27,7 @@ export const getNotes = () => async (dispatch, getState) => {
 export const addNote = note => async (dispatch, getState) => {
   try {
     const res = await axios.post('http://localhost:5000/api/notes', note, tokenConfig(getState));
-    dispatch({ type: ADD_NOTE, payload: res.data });
+    dispatch({ type: ADD_NOTE, payload: res.data.note });
   } catch (err) {
     dispatch(returnErrors(err.response.data, err.response.status, 'ADD_NOTE_FAIL'));
   }
