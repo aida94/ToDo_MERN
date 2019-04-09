@@ -19,7 +19,7 @@ class ContainerApp extends Component {
 
         { isAuthenticated 
           && <div className='my-5'>
-            <h3 className='text-secondary'> Welcome, {user.user.username && user.user.username.toUpperCase()}</h3>
+            <h3 className='text-secondary'> Welcome, {user.username && user.username.toUpperCase()}</h3>
             <Notes/>
           </div>
         }
