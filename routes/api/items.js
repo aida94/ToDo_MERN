@@ -12,8 +12,8 @@ const Item = require('../../models/Item');
 router.get('/:note_id', auth, async (req, res) => {
 
   try {
-    const item = await Item.find().where('note_id', req.params.note_id).sort({ date: -1 });
-    return res.json({ item });
+    const items = await Item.find().where('note_id', req.params.note_id).sort({ date: -1 });
+    return res.json({ items });
 
   } catch(error) {
       throw(error);

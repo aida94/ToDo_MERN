@@ -11,34 +11,35 @@ class Item extends Component {
     getItems: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
+    note: PropTypes.object.isRequired,
     item: PropTypes.object.isRequired,
     error: PropTypes.object.isRequired,
-
   };
 
   componentDidMount() {
     // get noteId from url
     const url = window.location.pathname.split('/');
     const noteId = url.pop();
-
     this.props.getItems(noteId);
   }
 
   render() {
     const { isAuthenticated } = this.props.auth;
+    const { notes } = this.props.note;
     const { items } = this.props.item;
     
     return (
       <Container className='my-5'>
 
-        {isAuthenticated
+        {isAuthenticated 
           && <div>
-            <h3 className='text-secondary'> Notes Name </h3>
+            <h3 className='text-secondary'> {notes.map(({ _id, note }) => <span key={_id}> {note.toUpperCase()} </span>)}  </h3>
             <ItemModel/>
             
             <Container>
               <ListGroup className='mt-5'>  
-                {items.map(({ _id, item }) => (
+              {items
+                && items.map(({ _id, item }) => (
                   <ListGroupItem key={_id} className='w-75'>
                     <CustomInput type='checkbox' id='item1' label=''>
                       <span>{item}</span>
@@ -47,12 +48,12 @@ class Item extends Component {
                       </Button>
                     </CustomInput>
                   </ListGroupItem>
-                ))}                                   
+                ))}
               </ListGroup>
             </Container> 
           </div>
         }
-
+        
         {!isAuthenticated 
           && <div>
             <h4 className='text-center mt-5'>You are not authorized to access. <br/> Please login first</h4>
@@ -66,6 +67,7 @@ class Item extends Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  note: state.note,
   item: state.item,
   error: state.error,
 });

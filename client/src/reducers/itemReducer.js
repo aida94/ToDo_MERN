@@ -2,8 +2,6 @@ import { GET_ITEMS, ADD_ITEM, ITEM_ADDED, DELETE_ITEM, ITEMS_LOADING } from '../
 
 const initialState = {
   items: [],
-  note_of_item: [],
-  note_id: '',
   item_added: false,
   loading: false,
 };
@@ -14,7 +12,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         items: action.payload,
-        note_id: action.note_id,
         loading: false,
       }; 
     case ADD_ITEM: 

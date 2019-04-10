@@ -16,6 +16,7 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const GET_NOTES = 'GET_NOTES';
 export const ADD_NOTE = 'ADD_NOTE';
 export const NOTE_ADDED = 'NOTE_ADDED';
+export const SHOW_NOTE = 'SHOW_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
 export const NOTES_LOADING = 'NOTES_LOADING';
 export const EMPTY_NOTES = 'EMPTY_NOTES';
