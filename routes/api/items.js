@@ -35,7 +35,7 @@ router.post('/:note_id', auth, async (req, res) => {
 
   try {
     const newItem = await Item.create({ item, note_id: req.params.note_id });
-    return res.json({ note: newItem });
+    return res.json({ item: newItem });
 
   } catch(error) {
       throw(error)

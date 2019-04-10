@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Button, Container, ListGroup, ListGroupItem, CustomInput } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getItems } from '../../actions/itemActions';
+import { getItems, deleteItem } from '../../actions/itemActions';
 import { clearErrors } from '../../actions/errorActions';
 import ItemModel from './ItemsModal';
 
 class Item extends Component {
   static propTypes = {
     getItems: PropTypes.func.isRequired,
+    deleteItem: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     note: PropTypes.object.isRequired,
@@ -22,6 +23,10 @@ class Item extends Component {
     const noteId = url.pop();
     this.props.getItems(noteId);
   }
+
+  onDeleteClick = (id) => {
+    this.props.deleteItem(id);
+  };
 
   render() {
     const { isAuthenticated } = this.props.auth;
@@ -41,9 +46,9 @@ class Item extends Component {
               {items
                 && items.map(({ _id, item }) => (
                   <ListGroupItem key={_id} className='w-75'>
-                    <CustomInput type='checkbox' id='item1' label=''>
+                    <CustomInput type='checkbox' id={`item${_id}`} label=''>
                       <span>{item}</span>
-                      <Button className='float-right' color='danger' size='sm' > 
+                      <Button className='float-right' color='danger' size='sm' onClick={this.onDeleteClick.bind(this, _id)}> 
                         &times;
                       </Button>
                     </CustomInput>
@@ -72,4 +77,4 @@ const mapStateToProps = state => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { getItems, clearErrors })(Item);
+export default connect(mapStateToProps, { getItems, deleteItem, clearErrors })(Item);
