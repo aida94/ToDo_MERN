@@ -75,7 +75,7 @@ class RegisterModal extends Component {
   render() {
     return (
       <Fragment>
-        <NavLink onClick={this.toggle}>
+        <NavLink onClick={this.toggle} className='cursorPointer'>
           <strong>Register</strong>
         </NavLink>
 

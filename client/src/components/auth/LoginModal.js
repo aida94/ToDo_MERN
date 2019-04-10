@@ -72,7 +72,7 @@ class LoginModal extends Component {
   render() {
     return (
       <Fragment>
-        <NavLink onClick={this.toggle}>
+        <NavLink onClick={this.toggle} className='cursorPointer'>
           <strong>Login</strong>
         </NavLink>
 

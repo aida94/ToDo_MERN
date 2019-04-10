@@ -27,3 +27,4 @@ export const ADD_ITEM = 'ADD_ITEM';
 export const ITEM_ADDED = 'ITEM_ADDED';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const ITEMS_LOADING = 'ITEMS_LOADING';
+export const EMPTY_ITEMS = 'EMPTY_ITEMS';

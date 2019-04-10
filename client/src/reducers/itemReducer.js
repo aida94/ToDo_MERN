@@ -1,9 +1,10 @@
-import { GET_ITEMS, ADD_ITEM, ITEM_ADDED, DELETE_ITEM, ITEMS_LOADING } from '../actions/types';
+import { GET_ITEMS, ADD_ITEM, ITEM_ADDED, DELETE_ITEM, ITEMS_LOADING, EMPTY_ITEMS } from '../actions/types';
 
 const initialState = {
   items: [],
   item_added: false,
   loading: false,
+  filter: '',
 };
   
 export default function (state = initialState, action) {
@@ -35,6 +36,13 @@ export default function (state = initialState, action) {
         ...state,
         loading: true,
       };   
+    case EMPTY_ITEMS: 
+      return {
+        items: [],
+        item_added: false,
+        loading: false,
+        filter: '',
+      };
     default:
       return state;
   }

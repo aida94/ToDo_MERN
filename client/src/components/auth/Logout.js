@@ -11,7 +11,7 @@ class Logout extends Component {
   
   render() {
     return (
-      <NavLink onClick={this.props.logout}>
+      <NavLink onClick={this.props.logout} className='cursorPointer'>
         <strong>Logout</strong>
       </NavLink>
     );

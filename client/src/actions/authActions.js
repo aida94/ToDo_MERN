@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { push } from 'connected-react-router';
 import { returnErrors } from './errorActions'; 
-import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL, EMPTY_NOTES } from './types';
+import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL, EMPTY_NOTES, EMPTY_ITEMS } from './types';
 
 
 // Check token & load user
@@ -61,6 +61,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   dispatch({ type: LOGOUT_SUCCESS });
   dispatch({ type: EMPTY_NOTES });
+  dispatch({ type: EMPTY_ITEMS });
 };
 
 

@@ -14,6 +14,10 @@
     cursor:pointer;
 }
 
-.checked_item {
+.checkedItem {
     text-decoration-line: line-through;
+}
+
+.cursorPointer {
+    cursor:pointer !important;
 }
