@@ -57,12 +57,9 @@ class ItemModel extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const url = window.location.pathname.split('/');
-    const noteId = url.pop();
 
     const newItem = {
       item: this.state.item,
-      note: noteId,
     };
 
     // Add item via addItem action

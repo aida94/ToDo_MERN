@@ -1,14 +1,16 @@
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 import { Button, Container, ListGroup, ListGroupItem, CustomInput } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getItems, deleteItem } from '../../actions/itemActions';
+import { getItems, checkItem, deleteItem } from '../../actions/itemActions';
 import { clearErrors } from '../../actions/errorActions';
 import ItemModel from './ItemsModal';
 
 class Item extends Component {
   static propTypes = {
     getItems: PropTypes.func.isRequired,
+    checkItem: PropTypes.func.isRequired,
     deleteItem: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
@@ -18,11 +20,12 @@ class Item extends Component {
   };
 
   componentDidMount() {
-    // get noteId from url
-    const url = window.location.pathname.split('/');
-    const noteId = url.pop();
-    this.props.getItems(noteId);
+    this.props.getItems();
   }
+
+  onCheckClick = (id) => {
+    this.props.checkItem(id);
+  };
 
   onDeleteClick = (id) => {
     this.props.deleteItem(id);
@@ -44,10 +47,10 @@ class Item extends Component {
             <Container>
               <ListGroup className='mt-5'>  
               {items
-                && items.map(({ _id, item }) => (
+                && items.map(({ _id, item, is_checked }) => (
                   <ListGroupItem key={_id} className='w-75'>
-                    <CustomInput type='checkbox' id={`item${_id}`} label=''>
-                      <span>{item}</span>
+                    <CustomInput type='checkbox' id={`item${_id}`} label='' checked={ is_checked } onChange={this.onCheckClick.bind(this, _id)} >
+                      <span className={ is_checked ? 'checked_item' : ''}> {item} </span>
                       <Button className='float-right' color='danger' size='sm' onClick={this.onDeleteClick.bind(this, _id)}> 
                         &times;
                       </Button>
@@ -77,4 +80,4 @@ const mapStateToProps = state => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { getItems, deleteItem, clearErrors })(Item);
+export default connect(mapStateToProps, { getItems, checkItem, deleteItem, clearErrors })(Item);

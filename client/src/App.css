@@ -13,3 +13,7 @@
     text-decoration: underline !important; 
     cursor:pointer;
 }
+
+.checked_item {
+    text-decoration-line: line-through;
+}

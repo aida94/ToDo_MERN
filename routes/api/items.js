@@ -56,7 +56,7 @@ router.put('/:id', async (req, res) => {
       return res.json({ message: 'Item not found!' });
     }
     const updatedItem = await Item.findOneAndUpdate({ _id: id }, { is_checked: !item.is_checked }, { new: true });
-    return res.json({ updatedItem });
+    return res.json({ item: updatedItem });
 
   } catch (error) {
     throw error;

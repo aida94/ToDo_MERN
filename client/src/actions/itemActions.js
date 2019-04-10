@@ -18,14 +18,14 @@ export const showNote = (id) => {
 
 
 // Get User Items  
-export const getItems = noteId => async (dispatch, getState) => {
+export const getItems = () => async (dispatch, getState) => {
   dispatch(setItemsLoading);
   dispatch(getNotes());
 
   try {
-    const res = await axios.get(`http://localhost:5000/api/items/${noteId}`, tokenConfig(getState));
+    const res = await axios.get(`http://localhost:5000/api/items/${noteID(getState)}`, tokenConfig(getState));
     dispatch({ type: GET_ITEMS, payload: res.data.items });
-    dispatch(showNote(noteId));
+    dispatch(showNote(noteID(getState)));
   } catch (err) {
     dispatch(returnErrors(err.response.data, err.response.status, 'GET_ITEMS_FAIL'));
   }
@@ -35,7 +35,7 @@ export const getItems = noteId => async (dispatch, getState) => {
 // Add Item
 export const addItem = item => async (dispatch, getState) => {
   try {
-    const res = await axios.post(`http://localhost:5000/api/items/${item.note}`, item, tokenConfig(getState));
+    const res = await axios.post(`http://localhost:5000/api/items/${noteID(getState)}`, item, tokenConfig(getState));
     dispatch({ type: ADD_ITEM, payload: res.data.item });
   } catch (err) {
     dispatch(returnErrors(err.response.data, err.response.status, 'ADD_ITEM_FAIL'));
@@ -50,8 +50,13 @@ export const itemAdded = () => {
 
 
 // Check/Uncheck Item
-export const checkItem = item => (dispatch) => {
-
+export const checkItem = id => async (dispatch, getState) => {
+  try {
+    await axios.put(`http://localhost:5000/api/items/${id}`, tokenConfig(getState));
+    dispatch(getItems(noteID(getState)));
+  } catch (err) {
+    dispatch(returnErrors(err.response.data, err.response.status, 'CHECK_ITEM_FAIL'));
+  }
 };
 
 // Delete Item
@@ -62,4 +67,12 @@ export const deleteItem = id => async (dispatch, getState) => {
   } catch (err) {
     dispatch(returnErrors(err.response.data, err.response.status, 'DELETE_ITEM_FAIL'));
   } 
+};
+
+// get noteId from url and use it for your call
+export const noteID = (getState) => {
+  const { pathname } = getState().router.location;
+  const pathnameUrl = pathname.split('/');
+  const noteId = pathnameUrl.pop();
+  return noteId;
 };
