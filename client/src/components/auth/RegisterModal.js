@@ -22,7 +22,7 @@ class RegisterModal extends Component {
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
-  };
+  }
 
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
@@ -50,11 +50,11 @@ class RegisterModal extends Component {
     this.setState({
       modal: !this.state.modal,
     });
-  };
+  }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-  };
+  }
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +70,7 @@ class RegisterModal extends Component {
 
     // attempt to login
     this.props.register(newUser);
-  };
+  }
 
   render() {
     return (

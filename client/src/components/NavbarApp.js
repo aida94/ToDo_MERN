@@ -16,13 +16,13 @@ class NavbarApp extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-  };
+  }
 
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen,
     });
-  };
+  }
 
   render() {
     const { isAuthenticated } = this.props.auth;

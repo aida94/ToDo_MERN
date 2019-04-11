@@ -22,7 +22,7 @@ class NotesModal extends Component {
     note_added: PropTypes.bool,
     error: PropTypes.object.isRequired,
     clearErrors: PropTypes.func.isRequired,
-  };
+  }
 
   componentDidUpdate(prevProps) {
     const { error } = this.props;
@@ -50,11 +50,11 @@ class NotesModal extends Component {
       modal: !this.state.modal,
       note: '',
     });
-  };
+  }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-  };
+  }
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -64,7 +64,7 @@ class NotesModal extends Component {
 
     // Add note via addNote action
     this.props.addNote(newNote);
-  };
+  }
 
   render() {
     return (

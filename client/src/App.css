@@ -25,3 +25,9 @@
 .filterActive {
     background-color: #d3d9df;
 }
+
+.modalContent {
+    margin-top: 150px;
+    background-color: white;
+    border-radius: .3rem;
+}

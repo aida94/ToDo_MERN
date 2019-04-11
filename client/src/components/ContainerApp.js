@@ -9,7 +9,7 @@ import Notes from './notes/Notes';
 class ContainerApp extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
-  };
+  }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -19,7 +19,7 @@ class ContainerApp extends Component {
 
         { isAuthenticated 
           && <div className='my-5'>
-            <h3 className='text-secondary'> Welcome, {user.username && user.username.toUpperCase()}</h3>
+            <h3 className='text-secondary'> Welcome, {user.username && user.username.charAt(0).toUpperCase() + user.username.slice(1)}</h3>
             <Notes/>
           </div>
         }
