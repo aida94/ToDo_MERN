@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, ITEM_ADDED, ITEMS_LOADING, SHOW_NOTE, DELETE_ITEM } from './types';
+import { GET_ITEMS, ADD_ITEM, ITEM_ADDED, ITEMS_LOADING, FILTER_ITEMS, SHOW_NOTE, DELETE_ITEM } from './types';
 import { tokenConfig } from './authActions';
 import { getNotes } from './noteActions';
 import { returnErrors } from './errorActions';
@@ -59,6 +59,18 @@ export const checkItem = id => async (dispatch, getState) => {
   }
 };
 
+
+// Filter Items
+export const filterItem = filter => async (dispatch, getState) => {
+  try {
+    const res = await axios.get(`http://localhost:5000/api/items/${noteID(getState)}`, tokenConfig(getState));
+    dispatch({ type: FILTER_ITEMS, payload: res.data.items, filter });
+  } catch (err) {
+    dispatch(returnErrors(err.response.data, err.response.status, 'FILTER_FAIL'));
+  } 
+};
+
+
 // Delete Item
 export const deleteItem = id => async (dispatch, getState) => {
   try {
@@ -68,6 +80,7 @@ export const deleteItem = id => async (dispatch, getState) => {
     dispatch(returnErrors(err.response.data, err.response.status, 'DELETE_ITEM_FAIL'));
   } 
 };
+
 
 // get noteId from url and use it for your call
 export const noteID = (getState) => {

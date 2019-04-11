@@ -25,6 +25,7 @@ export const EMPTY_NOTES = 'EMPTY_NOTES';
 export const GET_ITEMS = 'GET_ITEMS';
 export const ADD_ITEM = 'ADD_ITEM';
 export const ITEM_ADDED = 'ITEM_ADDED';
+export const FILTER_ITEMS = 'FILTER_ITEMS';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const ITEMS_LOADING = 'ITEMS_LOADING';
 export const EMPTY_ITEMS = 'EMPTY_ITEMS';

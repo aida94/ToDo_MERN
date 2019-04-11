@@ -1,10 +1,10 @@
-import { GET_ITEMS, ADD_ITEM, ITEM_ADDED, DELETE_ITEM, ITEMS_LOADING, EMPTY_ITEMS } from '../actions/types';
+import { GET_ITEMS, ADD_ITEM, ITEM_ADDED, DELETE_ITEM, ITEMS_LOADING, EMPTY_ITEMS, FILTER_ITEMS } from '../actions/types';
 
 const initialState = {
   items: [],
   item_added: false,
   loading: false,
-  filter: '',
+  filter: 'all',
 };
   
 export default function (state = initialState, action) {
@@ -25,6 +25,26 @@ export default function (state = initialState, action) {
       return {
         ...state,
         item_added: false,
+      };
+    case FILTER_ITEMS:
+      if (action.filter === 'completed') {
+        return {
+          ...state,
+          items: action.payload.filter(item => item.is_checked === true),
+          filter: action.filter,
+        };
+      }
+      if (action.filter === 'notCompleted') {
+        return {
+          ...state,
+          items: action.payload.filter(item => item.is_checked === false),
+          filter: action.filter,
+        };
+      }
+      return {
+        ...state,
+        items: action.payload,
+        filter: action.filter,
       };
     case DELETE_ITEM: 
       return {

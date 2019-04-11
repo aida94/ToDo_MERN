@@ -21,3 +21,7 @@
 .cursorPointer {
     cursor:pointer !important;
 }
+
+.filterActive {
+    background-color: #d3d9df;
+}
