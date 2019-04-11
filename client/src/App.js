@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import NavbarApp from './components/NavbarApp';
 import ContainerApp from './components/ContainerApp';
-import Item from './components/items/Items';
+import Items from './components/items/Items';
 import NotFound from './components/NotFound';
 import FooterApp from './components/FooterApp';
 import { store } from './store';
@@ -22,7 +22,7 @@ class App extends Component {
       <NavbarApp/>
       <Switch>
         <Route exact path='/' component={ContainerApp}/>
-        <Route path='/note' component={Item}/>
+        <Route path='/note' component={Items}/>
         <Route component={NotFound}/>
       </Switch>
       <FooterApp/>

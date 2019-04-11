@@ -6,6 +6,22 @@ const auth = require('../../middleware/auth');
 const Item = require('../../models/Item');
 
 
+// @route   Get /api/items/
+// @desc    Get items
+// @access  Private
+router.get('/', auth, async (req, res) => {
+
+  try {
+    const items = await Item.find().sort({ date: -1 });
+    return res.json({ items });
+
+  } catch(error) {
+      throw(error);
+  }
+
+});
+
+
 // @route   Get /api/items/:note_id
 // @desc    Get items
 // @access  Private

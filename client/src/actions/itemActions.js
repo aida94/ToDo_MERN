@@ -31,6 +31,16 @@ export const getItems = () => async (dispatch, getState) => {
   }
 };
 
+// Get User Items  
+export const getNoteItems = () => async (dispatch, getState) => {
+  try {
+    const res = await axios.get('http://localhost:5000/api/items', tokenConfig(getState));
+    dispatch({ type: GET_ITEMS, payload: res.data.items });
+  } catch (err) {
+    dispatch(returnErrors(err.response.data, err.response.status, 'GET_ITEMS_FAIL'));
+  }
+};
+
 
 // Add Item
 export const addItem = item => async (dispatch, getState) => {
