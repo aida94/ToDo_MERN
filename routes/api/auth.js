@@ -26,7 +26,6 @@ router.post('/login', async (req, res) => {
     if (!user) {
       return res.status(400).json({msg: 'User does not exist'})
     }
-
     const comparePassword = await bcrypt.compare(password, user.password);
     if (!comparePassword) {
       return res.status(400).json({ msg: 'Invalid credentials' });
@@ -37,7 +36,6 @@ router.post('/login', async (req, res) => {
   } catch (error) {
       throw(error);
   }
-
 });
 
 
@@ -64,7 +62,6 @@ router.post('/register', async (req, res) => {
     if (user) {
       return res.status(400).json({ msg: 'User already exist' });
     }
-
     const salt = await bcrypt.genSalt(10); // generate salt
     const encryptedPassword = await bcrypt.hash(password, salt); // generate hash password
     const newUser = await User.create({ username, email, password:encryptedPassword }); // create user in db
@@ -81,7 +78,6 @@ router.post('/register', async (req, res) => {
 // @desc    Get user data
 // @access  Private
 router.get('/user', auth, async (req, res) => {
-
   try {
     const user = await User.findById(req.user.id).select('-password');
     return res.json({ user });
@@ -89,7 +85,6 @@ router.get('/user', auth, async (req, res) => {
   } catch(error) {
       throw(error);
   }
-  
 });    
 
 module.exports = router;

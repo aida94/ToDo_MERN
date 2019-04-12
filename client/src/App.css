@@ -31,3 +31,7 @@
     background-color: white;
     border-radius: .3rem;
 }
+
+.hideAlert {
+    visibility:hidden;
+}

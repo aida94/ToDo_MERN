@@ -60,6 +60,7 @@ class Note extends Component {
           </Card>
         </div>
 
+        {/* delete confirmation modal */ }
         <Modal isOpen={this.state.modal} toggle={this.toggle} className='modalContent'>
           <ModalHeader toggle={this.toggle} >
             Delete Confirmation

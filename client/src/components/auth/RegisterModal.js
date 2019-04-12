@@ -58,7 +58,6 @@ class RegisterModal extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-
     const { username, email, password } = this.state;
 
     // Create new user object

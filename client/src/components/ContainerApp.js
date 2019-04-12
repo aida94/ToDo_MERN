@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Jumbotron } from 'reactstrap';
+import { Container, Jumbotron, Alert } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import LoginModal from './auth/LoginModal';
@@ -7,15 +7,41 @@ import Notes from './notes/Notes';
 
 
 class ContainerApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: true,
+    };
+  }
+
   static propTypes = {
     auth: PropTypes.object.isRequired,
+    note: PropTypes.object.isRequired,
+    item: PropTypes.object.isRequired,
+  }
+
+  onDismiss = () => {
+    this.setState({ visible: false });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.note.noteMessage !== this.props.note.noteMessage) {
+      this.interval = setInterval(() => this.onDismiss(), 3000);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { noteMessage } = this.props.note;
 
     return (
       <Container>
+
+        {noteMessage && <Alert isOpen={this.state.visible} toggle={this.onDismiss} color="success"> {noteMessage} </Alert>}
 
         { isAuthenticated 
           && <div className='my-5'>
@@ -43,6 +69,8 @@ class ContainerApp extends Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  note: state.note,
+  item: state.note,
 });
 
 export default connect(mapStateToProps, { })(ContainerApp);

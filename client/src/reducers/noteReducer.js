@@ -4,6 +4,7 @@ const initialState = {
   notes: [],
   note_added: false,
   loading: false,
+  noteMessage: '',
 };
   
 export default function (state = initialState, action) {
@@ -11,6 +12,7 @@ export default function (state = initialState, action) {
     case GET_NOTES: 
       return {
         ...state,
+        noteMessage: '',
         notes: action.payload,
         loading: false,
       }; 
@@ -23,16 +25,19 @@ export default function (state = initialState, action) {
     case NOTE_ADDED: 
       return {
         ...state,
+        noteMessage: 'Note added successfully',
         note_added: false,
       };
     case SHOW_NOTE: 
       return {
         ...state,
+        noteMessage: '',
         notes: state.notes.filter(note => note._id === action.payload),
       };
     case DELETE_NOTE: 
       return {
         ...state,
+        noteMessage: '',
         notes: state.notes.filter(note => note._id !== action.payload),
       };
     case NOTES_LOADING: 

@@ -5,33 +5,25 @@ import { getNotes } from './noteActions';
 import { returnErrors } from './errorActions';
 
 
-// before Items loaded
-export const setItemsLoading = () => {
-  return { type: ITEMS_LOADING };
-};
-
-
-// Show Note
-export const showNote = (id) => {
-  return { type: SHOW_NOTE, payload: id };
-};
-
-
 // Get User Items  
 export const getItems = () => async (dispatch, getState) => {
-  dispatch(setItemsLoading);
+  // Items loading
+  dispatch({ type: ITEMS_LOADING });
+  // get all notes 
   dispatch(getNotes());
 
   try {
     const res = await axios.get(`http://localhost:5000/api/items/${noteID(getState)}`, tokenConfig(getState));
     dispatch({ type: GET_ITEMS, payload: res.data.items });
-    dispatch(showNote(noteID(getState)));
+    // get note of respective items
+    dispatch({ type: SHOW_NOTE, payload: noteID(getState) });
   } catch (err) {
     dispatch(returnErrors(err.response.data, err.response.status, 'GET_ITEMS_FAIL'));
   }
 };
 
-// Get User Items  
+
+// Get all Items so i home we can filter items for each note
 export const getNoteItems = () => async (dispatch, getState) => {
   try {
     const res = await axios.get('http://localhost:5000/api/items', tokenConfig(getState));
@@ -63,7 +55,7 @@ export const itemAdded = () => {
 export const checkItem = id => async (dispatch, getState) => {
   try {
     await axios.put(`http://localhost:5000/api/items/${id}`, tokenConfig(getState));
-    dispatch(getItems(noteID(getState)));
+    dispatch(getItems());
   } catch (err) {
     dispatch(returnErrors(err.response.data, err.response.status, 'CHECK_ITEM_FAIL'));
   }

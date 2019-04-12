@@ -4,15 +4,10 @@ import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
 
-// before Notes loaded
-export const setNotesLoading = () => {
-  return { type: NOTES_LOADING };
-};
-
-
 // Get User Notes  
 export const getNotes = () => async (dispatch, getState) => {
-  dispatch(setNotesLoading);
+  // Notes loading
+  dispatch({ type: NOTES_LOADING });
 
   try {
     const res = await axios.get('http://localhost:5000/api/notes', tokenConfig(getState));

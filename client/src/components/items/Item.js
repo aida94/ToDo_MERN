@@ -45,6 +45,7 @@ class Item extends Component {
           </CustomInput>
         </ListGroupItem>
 
+        {/* delete confirmation modal */}
         <Modal isOpen={this.state.modal} toggle={this.toggle} className='modalContent'>
           <ModalHeader toggle={this.toggle} >
             Delete Confirmation

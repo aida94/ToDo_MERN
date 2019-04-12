@@ -10,7 +10,6 @@ const Note = require('../../models/Note');
 // @desc    Get user notes
 // @access  Private
 router.get('/', auth, async (req, res) => {
-
   try {
     const notes = await Note.find().where('user_id', req.user.id).sort({ date: -1 });
     return res.json({ notes });
@@ -18,7 +17,6 @@ router.get('/', auth, async (req, res) => {
   } catch(error) {
       throw(error);
   }
-  
 });
 
 
@@ -40,7 +38,6 @@ router.post('/', auth, async (req, res) => {
   } catch(error) {
       throw(error)
   }
-
 });
 
 
@@ -48,7 +45,6 @@ router.post('/', auth, async (req, res) => {
 // @desc    Delete note
 // @access  Private
 router.delete('/:id', auth, async (req, res) => {
-
   try {
     const note = await Note.findOneAndDelete({ _id: req.params.id });
     return res.json({ note });
@@ -56,7 +52,6 @@ router.delete('/:id', auth, async (req, res) => {
   } catch(error) {
       throw(error)
   }
-
 });
 
 module.exports = router;

@@ -23,12 +23,9 @@ class Notes extends Component {
       <Fragment>
         <NotesModal/>
 
-         <div className='row mt-4'>
-
+        <div className='row mt-4'>
           {notes.length !== 0 && notes.map(({ _id, note }) => <Note key={_id} id={_id} note={note}/>)} 
-
           {notes.length === 0 && <h4 className='mt-5 text-secondary text-center'>No notes</h4>} 
-
         </div> 
       </Fragment>
     );

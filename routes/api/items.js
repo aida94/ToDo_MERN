@@ -10,7 +10,6 @@ const Item = require('../../models/Item');
 // @desc    Get items
 // @access  Private
 router.get('/', auth, async (req, res) => {
-
   try {
     const items = await Item.find().sort({ date: -1 });
     return res.json({ items });
@@ -18,7 +17,6 @@ router.get('/', auth, async (req, res) => {
   } catch(error) {
       throw(error);
   }
-
 });
 
 
@@ -26,7 +24,6 @@ router.get('/', auth, async (req, res) => {
 // @desc    Get items
 // @access  Private
 router.get('/:note_id', auth, async (req, res) => {
-
   try {
     const items = await Item.find().where('note_id', req.params.note_id).sort({ date: -1 });
     return res.json({ items });
@@ -34,7 +31,6 @@ router.get('/:note_id', auth, async (req, res) => {
   } catch(error) {
       throw(error);
   }
-
 });
 
 
@@ -56,7 +52,6 @@ router.post('/:note_id', auth, async (req, res) => {
   } catch(error) {
       throw(error)
   }
-
 });
 
 
@@ -77,7 +72,6 @@ router.put('/:id', async (req, res) => {
   } catch (error) {
     throw error;
   }
-
 });
 
 
@@ -85,7 +79,6 @@ router.put('/:id', async (req, res) => {
 // @desc    Delete item
 // @access  Private
 router.delete('/:id', async (req, res) => {
-
   try {
     const item = await Item.findOneAndDelete({ _id: req.params.id });
     return res.json({ item });
@@ -93,7 +86,6 @@ router.delete('/:id', async (req, res) => {
   } catch(error) {
       throw(error)
   }
-
 });
 
 module.exports = router;
