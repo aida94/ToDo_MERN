@@ -23,6 +23,7 @@ export const addNote = note => async (dispatch, getState) => {
   try {
     const res = await axios.post('http://localhost:5000/api/notes', note, tokenConfig(getState));
     dispatch({ type: ADD_NOTE, payload: res.data.note });
+    dispatch({ type: NOTE_ADDED, payload: res.data.note });
   } catch (err) {
     dispatch(returnErrors(err.response.data, err.response.status, 'ADD_NOTE_FAIL'));
   }

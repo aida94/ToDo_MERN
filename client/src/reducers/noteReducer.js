@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
     case NOTE_ADDED: 
       return {
         ...state,
-        noteMessage: 'Note added successfully',
+        noteMessage: action.payload.note,
         note_added: false,
       };
     case SHOW_NOTE: 

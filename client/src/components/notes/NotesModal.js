@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addNote, noteAdded } from '../../actions/noteActions';
+import { addNote } from '../../actions/noteActions';
 import { clearErrors } from '../../actions/errorActions';
 
 
@@ -18,7 +18,6 @@ class NotesModal extends Component {
 
   static propTypes = {
     addNote: PropTypes.func.isRequired,
-    noteAdded: PropTypes.func.isRequired,
     note_added: PropTypes.bool,
     error: PropTypes.object.isRequired,
     clearErrors: PropTypes.func.isRequired,
@@ -38,7 +37,6 @@ class NotesModal extends Component {
     // if authenticated close modal
     if (this.state.modal && this.props.note_added) {
       this.toggle();
-      this.props.noteAdded();
     }
   }
 
@@ -99,4 +97,4 @@ const mapStateToProps = state => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { addNote, noteAdded, clearErrors })(NotesModal);
+export default connect(mapStateToProps, { addNote, clearErrors })(NotesModal);

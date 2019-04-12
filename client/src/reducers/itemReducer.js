@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
     case ITEM_ADDED: 
       return {
         ...state,
-        itemMessage: 'Item added successfully',
+        itemMessage: action.payload.item,
         item_added: false,
       };
     case FILTER_ITEMS:

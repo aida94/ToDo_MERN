@@ -65,7 +65,7 @@ class Items extends Component {
     return (
       <Container>
 
-        {itemMessage && <Alert isOpen={this.state.visible} toggle={this.onDismiss} color="success"> {itemMessage} </Alert>}
+        {itemMessage && <Alert isOpen={this.state.visible} toggle={this.onDismiss} color="success"> {itemMessage} successfully added </Alert>}
 
         {isAuthenticated 
           && <div className='my-5'>

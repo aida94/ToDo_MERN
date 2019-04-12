@@ -39,15 +39,10 @@ export const addItem = item => async (dispatch, getState) => {
   try {
     const res = await axios.post(`http://localhost:5000/api/items/${noteID(getState)}`, item, tokenConfig(getState));
     dispatch({ type: ADD_ITEM, payload: res.data.item });
+    dispatch({ type: ITEM_ADDED, payload: res.data.item });
   } catch (err) {
     dispatch(returnErrors(err.response.data, err.response.status, 'ADD_ITEM_FAIL'));
   }
-};
-
-
-// Item added
-export const itemAdded = () => {
-  return { type: ITEM_ADDED };
 };
 
 

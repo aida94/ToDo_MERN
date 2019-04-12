@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addItem, itemAdded } from '../../actions/itemActions';
+import { addItem } from '../../actions/itemActions';
 import { clearErrors } from '../../actions/errorActions';
 
 class ItemModel extends Component {  
@@ -17,7 +17,6 @@ class ItemModel extends Component {
 
   static propTypes = {
     addItem: PropTypes.func.isRequired,
-    itemAdded: PropTypes.func.isRequired,
     item_added: PropTypes.bool,
     error: PropTypes.object.isRequired,
     clearErrors: PropTypes.func.isRequired,
@@ -37,7 +36,6 @@ class ItemModel extends Component {
     // if authenticated close modal
     if (this.state.modal && this.props.item_added) {
       this.toggle();
-      this.props.itemAdded();
     }
   }
 
@@ -99,4 +97,4 @@ const mapStateToProps = state => ({
 });
   
 
-export default connect(mapStateToProps, { addItem, itemAdded, clearErrors })(ItemModel);
+export default connect(mapStateToProps, { addItem, clearErrors })(ItemModel);

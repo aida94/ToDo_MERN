@@ -41,7 +41,7 @@ class ContainerApp extends Component {
     return (
       <Container>
 
-        {noteMessage && <Alert isOpen={this.state.visible} toggle={this.onDismiss} color="success"> {noteMessage} </Alert>}
+        {noteMessage && <Alert isOpen={this.state.visible} toggle={this.onDismiss} color="success"> {noteMessage} successfully added </Alert>}
 
         { isAuthenticated 
           && <div className='my-5'>
