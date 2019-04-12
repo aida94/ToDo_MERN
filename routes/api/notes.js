@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth');
 
 // Notes Model
 const Note = require('../../models/Note');
+const Item = require('../../models/Item');
 
 
 // @route   Get api/notes
@@ -47,7 +48,8 @@ router.post('/', auth, async (req, res) => {
 router.delete('/:id', auth, async (req, res) => {
   try {
     const note = await Note.findOneAndDelete({ _id: req.params.id });
-    return res.json({ note });
+    const item = await Item.deleteMany({ note_id: req.params.id });
+    return res.json({ note, item });
 
   } catch(error) {
       throw(error)
