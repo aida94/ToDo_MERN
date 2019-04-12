@@ -17,6 +17,7 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
 // Use Routes
 app.use(cors());
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/github', require('./routes/api/github'));
 app.use('/api/notes', require('./routes/api/notes'));
 app.use('/api/items', require('./routes/api/items'));
 

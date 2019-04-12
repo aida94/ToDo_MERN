@@ -93,9 +93,10 @@ class LoginModal extends Component {
             </Form>
           </ModalBody>
           <ModalFooter>
-            <p className='d-flex justify-content-start'>
+            {/* <p className='d-flex justify-content-start'>
               If you don't have an account, please &nbsp; <a href='#register'> Register </a>
-            </p>  
+            </p>   */}
+            <a href='https://github.com/login/oauth/authorize?client_id=ebd1328f3e1b75969fd7'>GitHUb</a>
           </ModalFooter>
         </Modal>
 
