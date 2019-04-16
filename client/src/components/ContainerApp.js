@@ -25,8 +25,9 @@ class ContainerApp extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.note.noteMessage !== this.props.note.noteMessage) {
-      this.interval = setInterval(() => this.onDismiss(), 3000);
+    if (prevProps.note.noteMessage._id !== this.props.note.noteMessage._id) {
+      this.setState({ visible: true });
+      this.interval = setTimeout(() => this.onDismiss(), 3000);
     }
   }
 
@@ -36,12 +37,12 @@ class ContainerApp extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    const { noteMessage } = this.props.note;
+    const { note } = this.props.note.noteMessage;
 
     return (
       <Container>
 
-        {noteMessage && <Alert isOpen={this.state.visible} toggle={this.onDismiss} color="success"> {noteMessage} successfully added </Alert>}
+        {note && <Alert isOpen={this.state.visible} toggle={this.onDismiss} color="success"> {note} successfully added </Alert>}
 
         { isAuthenticated 
           && <div className='my-5'>

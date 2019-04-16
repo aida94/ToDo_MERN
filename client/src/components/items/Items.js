@@ -35,7 +35,8 @@ class Items extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.item.itemMessage !== this.props.item.itemMessage) {
-      this.interval = setInterval(() => this.onDismiss(), 3000);
+      this.setState({ visible: true });
+      this.interval = setTimeout(() => this.onDismiss(), 3000);
     }
   }
 
@@ -60,12 +61,12 @@ class Items extends Component {
     const { notes } = this.props.note;
     const { filter } = this.props.item;
     const { items } = this.props.item;
-    const { itemMessage } = this.props.item;
+    const { item } = this.props.item.itemMessage;
     
     return (
       <Container>
 
-        {itemMessage && <Alert isOpen={this.state.visible} toggle={this.onDismiss} color="success"> {itemMessage} successfully added </Alert>}
+        {item && <Alert isOpen={this.state.visible} toggle={this.onDismiss} color="success"> {item} successfully added </Alert>}
 
         {isAuthenticated 
           && <div className='my-5'>
