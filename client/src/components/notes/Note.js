@@ -37,6 +37,14 @@ class Note extends Component {
 
   render() {
     const { items } = this.props.item;
+    const noItem = <small className='text-muted'>no item</small>;
+    const moreItem = <Link key='moreItem' to={`/note/${this.props.id}`} className='cardLink font-weight-bold mt-2'> . . . </Link>;
+    const filterItem = items.filter(item => (item.note_id === this.props.id && item.is_checked === false));
+    const mapItem = filterItem.map(item => <ListGroupItem key={item._id}>{item.item}</ListGroupItem>);
+    const sliceItem = mapItem.slice(0, 2);
+    // eslint-disable-next-line no-unused-vars
+    const pushItem = sliceItem.push(moreItem);
+    
     return (
       <Fragment>
         <div className='col-3 mb-4'>
@@ -44,12 +52,15 @@ class Note extends Component {
             <CardHeader className='list-group-item-warning'>{this.props.note.charAt(0).toUpperCase() + this.props.note.slice(1)}</CardHeader>
             <CardBody>
               <ListGroup flush>
+                
                 { items 
-                && items.filter(item => (
-                  item.note_id === this.props.id && item.is_checked === false))
-                  .map(item => (
-                    <ListGroupItem key={item._id}>{item.item}</ListGroupItem>)).slice(0, 2)
-                }
+                  && filterItem.length > 0 
+                  && mapItem.length > 2 ? sliceItem : mapItem }
+
+                { items 
+                  && filterItem.length === 0 
+                  && noItem }
+
               </ListGroup>
             </CardBody>
             <CardFooter className='list-group-item-warning'>
