@@ -2,8 +2,13 @@ import React, { Component, Fragment } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, NavLink, Alert } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+
+library.add(faFacebookF, faGoogle, faGithub); 
 
 class LoginModal extends Component {
   constructor(props) {
@@ -93,10 +98,21 @@ class LoginModal extends Component {
             </Form>
           </ModalBody>
           <ModalFooter>
-            {/* <p className='d-flex justify-content-start'>
-              If you don't have an account, please &nbsp; <a href='#register'> Register </a>
-            </p>   */}
-            <a href='https://github.com/login/oauth/authorize?client_id=ebd1328f3e1b75969fd7'>GitHUb</a>
+
+            <span>Sign in with </span>
+
+            <a className='btnIcon facebookIcon' href='3'> 
+              <FontAwesomeIcon icon={['fab', 'facebook-f']} /> 
+            </a>  
+
+            <a className='btnIcon googleIcon' href='3'> 
+              <FontAwesomeIcon icon={['fab', 'google']} /> 
+            </a>    
+
+            <a className='btnIcon githubIcon' href='https://github.com/login/oauth/authorize?client_id=ebd1328f3e1b75969fd7'> 
+              <FontAwesomeIcon icon={['fab', 'github']} />
+            </a>   
+
           </ModalFooter>
         </Modal>
 

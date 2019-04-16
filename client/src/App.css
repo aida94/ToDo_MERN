@@ -35,3 +35,36 @@
 .hideAlert {
     visibility:hidden;
 }
+
+.btnIcon {
+    width: 30px;
+    line-height: 31px;
+    font-size: 1.1em;
+    text-align: center; 
+    border-radius: .4rem;
+    color: white;
+}
+
+.facebookIcon {
+    background-color: #3B5998; 
+}
+.facebookIcon:hover {
+    background-color: #2D4373;
+    color: white;
+}
+
+.googleIcon {
+    background-color: #DD4B39;    
+}
+.googleIcon:hover {
+    background-color: #C23321;
+    color: white;
+}
+
+.githubIcon {
+    background-color: #444444;   
+}
+.githubIcon:hover {
+    background-color: #2B2B2B;
+    color: white;
+}
