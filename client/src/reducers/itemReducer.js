@@ -68,6 +68,7 @@ export default function (state = initialState, action) {
         items: [],
         item_added: false,
         loading: false,
+        itemMessage: '',
         filter: '',
       };
     default:

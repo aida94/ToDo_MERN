@@ -50,6 +50,7 @@ export default function (state = initialState, action) {
         notes: [],
         note_added: false,
         loading: false,
+        noteMessage: '',
       };  
     default:
       return state;
