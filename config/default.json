@@ -1,4 +1,14 @@
 {
   "mongoURI": "mongodb://localhost:27017/ToDo_MERN",
-  "jwtSecret": "myJwtSecret"
+  "jwtSecret": "myJwtSecret",
+  "oauth": {
+    "google": {
+      "clientID": "268327355096-tpfie0obavhpb9j9auc3plf5r6ntospg.apps.googleusercontent.com",
+      "clientSecret": "E31Pcfl9c3cXZTs4KSPwgzx0"
+    },
+    "facebook": {
+      "clientID": "957055597958981",
+      "clientSecret": "85908a4d52f5f98a13f059d376672b16"
+    }
+  }
 }
