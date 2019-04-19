@@ -2,10 +2,12 @@ import React, { Component, Fragment } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, NavLink, Alert } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { login } from '../../actions/authActions';
+import { login, googleOauth, facebookOauth } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 
 library.add(faFacebookF, faGoogle, faGithub); 
@@ -25,6 +27,8 @@ class LoginModal extends Component {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
+    googleOauth: PropTypes.func.isRequired,
+    facebookOauth: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
   }
 
@@ -74,6 +78,19 @@ class LoginModal extends Component {
     this.props.login(user);
   }
 
+  oauthFacebook = (res) => {
+    this.props.facebookOauth(res.accessToken);
+  }
+
+  oauthGoogle = (res) => {
+    this.props.googleOauth(res.accessToken);
+  }
+
+  oauthGithub = () => {
+    console.log('github');
+  }
+
+
   render() {
     return (
       <Fragment>
@@ -101,17 +118,25 @@ class LoginModal extends Component {
 
             <span>Sign in with </span>
 
-            <a className='btnIcon facebookIcon' href='3'> 
-              <FontAwesomeIcon icon={['fab', 'facebook-f']} /> 
-            </a>  
+            <FacebookLogin 
+              appId='957055597958981'
+              autoLoad={false}
+              textButton={<FontAwesomeIcon icon={['fab', 'facebook-f']} />}
+              fields='name,email,picture'
+              onClick={this.oauthFacebook}
+              callback={this.oauthFacebook}
+              cssClass='btnIcon facebookIcon'
+            />
 
-            <a className='btnIcon googleIcon' href='3'> 
-              <FontAwesomeIcon icon={['fab', 'google']} /> 
-            </a>    
+            <GoogleLogin
+              clientId='268327355096-tpfie0obavhpb9j9auc3plf5r6ntospg.apps.googleusercontent.com'
+              onSuccess={this.oauthGoogle}
+              onFailure={this.oauthGoogle}
+            />  
 
-            <a className='btnIcon githubIcon' href='https://github.com/login/oauth/authorize?client_id=ebd1328f3e1b75969fd7'> 
+            <span className='btnIcon githubIcon' onClick={this.oauthGithub} href='https://github.com/login/oauth/authorize?client_id=ebd1328f3e1b75969fd7'> 
               <FontAwesomeIcon icon={['fab', 'github']} />
-            </a>   
+            </span>   
 
           </ModalFooter>
         </Modal>
@@ -126,4 +151,4 @@ const mapStateToProps = state => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { login, clearErrors })(LoginModal);
+export default connect(mapStateToProps, { login, googleOauth, facebookOauth, clearErrors })(LoginModal);

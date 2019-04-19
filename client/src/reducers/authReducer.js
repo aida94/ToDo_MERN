@@ -1,4 +1,4 @@
-import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL } from '../actions/types';
+import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL, GOOGLE_OAUTH, FACEBOOK_OAUTH } from '../actions/types';
 
 const initialState = {
   token: localStorage.getItem('token'),
@@ -23,6 +23,8 @@ export default function (state = initialState, action) {
       };
     case LOGIN_SUCCESS: 
     case REGISTER_SUCCESS: 
+    case GOOGLE_OAUTH:
+    case FACEBOOK_OAUTH:
       localStorage.setItem('token', action.token);
       return {
         ...state,

@@ -8,6 +8,10 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 
+// oauth types
+export const GOOGLE_OAUTH = 'GOOGLE_OAUTH';
+export const FACEBOOK_OAUTH = 'FACEBOOK_OAUTH';
+
 // error types
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
